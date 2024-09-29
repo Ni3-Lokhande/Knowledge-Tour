@@ -1,0 +1,47 @@
+
+
+/* Styles for recent posts section */
+.recent-posts ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .recent-posts li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+  }
+  
+  .recent-posts a {
+    display: flex;
+    align-items: flex-start;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .recent-posts__image {
+    width: 80px;  /* Fixed width */
+    height: 60px; /* Fixed height */
+    margin-right: 10px;
+    object-fit: cover; /* Ensures image is cropped to fit */
+    border-radius: 5px;
+    flex-shrink: 0; /* Ensures the image doesn't shrink */
+  }
+  
+  .recent-posts__details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .recent-posts__details h5 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .recent-posts__details span {
+    font-size: 14px;
+    color: #888;
+    margin-top: 4px; /* Adds spacing between the title and the date */
+  }
+  

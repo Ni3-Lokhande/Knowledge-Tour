@@ -1,0 +1,169 @@
+
+/* SliderBanner.css */
+
+/* General padding for the top of the slider */
+.slider-banner {
+  padding-top: 100px;
+}
+
+/* Container to hold the carousel content */
+.slider-banner__container {
+  padding: 0 10px;
+  margin-bottom: -24px;
+}
+
+/* Slider item container */
+.slider-banner__item {
+  position: relative;
+  overflow: hidden; /* Ensure the overlay stays within the bounds */
+    padding: 10px;
+   text-align: center;
+    box-sizing: border-box;
+}
+
+/* Image styling with dark opacity */
+.slider-banner__image {
+  width: 100%;
+  height: 420px;
+  display: block;
+  filter: brightness(0.5); /* Darken the image */
+  transition: filter 0.3s ease;
+  margin: 0 auto; object-fit: cover;
+}
+
+/* Content overlay on the image */
+.slider-banner__content {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  z-index: 2; /* Ensures the content is above the dark overlay */
+  color: #fff;
+  opacity: 1; /* Bright content */
+  transition: opacity 0.3s ease;
+}
+
+/* Category styling */
+.slider-banner__category span {
+  color: #f48840;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.25px;
+}
+
+/* Blog title styling */
+.slider-banner__title h4 {
+  font-size: 24px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  margin: 10px 0 12px 0;
+}
+
+/* Post info list */
+.slider-banner__info {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.slider-banner__info-item {
+  display: inline-block;
+  margin-right: 8px;
+  color: #fff;
+}
+
+.slider-banner__info-item:after {
+  content: '|';
+  color: #fff;
+  margin-left: 8px;
+}
+
+.slider-banner__info-item:last-child:after {
+  display: none;
+}
+
+.slider-banner__info-item a {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.slider-banner__info-item a:hover {
+  color: #f48840;
+}
+
+/* Hover effect to make image slightly brighter */
+.slider-banner__item:hover .slider-banner__image {
+  filter: brightness(0.7); /* Make image brighter on hover */
+}
+
+/* Slick carousel navigation controls */
+.slider-banner .slick-prev, 
+.slider-banner .slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3; /* Above the content */
+  background-color: rgba(250, 250, 250, 0.3);
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Remove default Slick arrows */
+.slider-banner .slick-prev::before,
+.slider-banner .slick-next::before {
+  display: none;
+}
+
+/* Add custom arrow indicators using ::after */
+.slider-banner .slick-prev::after,
+.slider-banner .slick-next::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  /* Center the arrow inside the button */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+/* Create left arrow */
+.slider-banner .slick-prev::after {
+  transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+/* Create right arrow */
+.slider-banner .slick-next::after {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Position navigation buttons */
+.slider-banner .slick-prev {
+  left: 40px;
+}
+
+.slider-banner .slick-next {
+  right: 40px;
+}
+
+/* Change background on hover */
+.slider-banner .slick-prev:hover,
+.slider-banner .slick-next:hover {
+  background-color: rgba(250, 250, 250, 0.5);
+}
+
+/* Hide the dots at the bottom of the slider */
+.slider-banner .slick-dots {
+  display: none;
+}

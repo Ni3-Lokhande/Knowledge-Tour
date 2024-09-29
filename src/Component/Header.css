@@ -1,0 +1,83 @@
+
+.navbar {
+  position: relative; /* Or 'sticky' if you want a sticky header */
+  z-index: 1000;
+  }
+  
+
+ /* General Navbar Styling */
+.navbar-brand h2 {
+  font-size: 1.8rem;
+}
+
+.navbar-nav .nav-link {
+  margin: 0 10px;
+  font-size: 1.1rem;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+/* Share Icon Hover Styling */
+.share-icon {
+  margin-left: 10px; margin-top: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: blue;
+}
+
+.share-icon:hover {
+  color: #f48840;
+}
+
+
+/* Admin Dashboard Icon Styling */
+.admin-dashboard-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  margin-left: 15px;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.admin-dashboard-icon:hover {
+  background-color: #f48840;
+  text-decoration: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .navbar-nav {
+      text-align: center;
+      flex-direction: column; /* Stack items vertically */
+  }
+
+  .navbar-nav .nav-link {
+      margin: 10px 0;
+  }
+
+  /* Move the admin icon below all nav items */
+  .admin-dashboard-icon {
+      width: 35px;
+      height: 35px;
+      margin: 30px auto 0; /* Center icon and add space above */
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand h2 {
+      font-size: 1.5rem;
+  }
+
+  .admin-dashboard-icon {
+      width: 30px;
+      height: 30px;
+      margin: 15px auto 0; /* Center and adjust margin for smaller screen */
+  }
+}
