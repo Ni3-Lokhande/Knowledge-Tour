@@ -1,4 +1,6 @@
+
 import React from "react";
+import "./Comment.css";
 
 const Comment = ({
   addComment,
@@ -26,7 +28,7 @@ const Comment = ({
                     </div>
                     <div className="right-content">
                       <h4>
-                        {fullName}
+                        {fullName} 
                         <span>{date}</span>
                       </h4>
                       <p>{commentText}</p>
