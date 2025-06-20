@@ -1,6 +1,113 @@
 
-import React from "react";
+// import React from "react";
+// import "./Comment.css";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faUser } from '@fortawesome/free-solid-svg-icons';
+
+// const Comment = ({
+//   addComment,
+//   commentText,
+//   setCommentText,
+//   allComment,
+//   fullName,
+//   setFullName,
+// }) => {
+//   return (
+//     <div>
+//       <div className="sidebar-item comments">
+//         <div className="sidebar-heading">
+//           <h2>4 comments</h2>
+//         </div>
+//         <div className="content">
+//           <ul>
+//             {allComment.length > 0 ? (
+//               allComment.map((item) => {
+//                 const { fullName, commentText, date } = item;
+//                 return (
+//                   <li key={item.id}>
+//                     <div className="author-thumb">
+//                       {/* <img src="public/assets/images/comment-author-03.jpg" alt="" /> */}
+//                       <FontAwesomeIcon icon={faUser} size="1.5x" />
+//                     </div>
+//                     <div className="right-content">
+//                       <h4>
+//                         {fullName} 
+//                         <span>{date}</span>
+//                       </h4>
+//                       <p>{commentText}</p>
+//                     </div>
+//                   </li>
+//                 );
+//               })
+//             ) : (
+//               <p>No comments yet. Be the first to comment!</p>
+//             )}
+//           </ul>
+//         </div>
+//       </div>
+
+//       <div className="sidebar-item submit-comment">
+//         <div className="sidebar-heading">
+//           <h2>Your comment</h2>
+//         </div>
+//         <div className="content">
+//           <form id="comment" onSubmit={addComment}>
+//             <div className="row">
+//               {/* Name input */}
+//               <div className="col-md-6 col-sm-12">
+//                 <fieldset>
+//                   <input
+//                     name="name"
+//                     type="text"
+//                     id="name"
+//                     placeholder="Your name"
+//                     required
+//                     value={fullName}
+//                     onChange={(e) => setFullName(e.target.value)}
+//                   />
+//                 </fieldset>
+//               </div>
+//               {/* Comment input */}
+//               <div className="col-lg-12">
+//                 <fieldset>
+//                   <textarea
+//                     name="message"
+//                     rows={6}
+//                     id="message"
+//                     placeholder="Type your comment"
+//                     required
+//                     value={commentText}
+//                     onChange={(e) => setCommentText(e.target.value)}
+//                   />
+//                 </fieldset>
+//               </div>
+//               {/* Submit button */}
+//               <div className="col-lg-12">
+//                 <fieldset>
+//                   <button
+//                     type="submit"
+//                     id="form-submit"
+//                     className="main-button"
+//                   >
+//                     Submit
+//                   </button>
+//                 </fieldset>
+//               </div>
+//             </div>
+//           </form>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Comment;
+
+
+import React, { useState } from "react";
 import "./Comment.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Comment = ({
   addComment,
@@ -10,25 +117,29 @@ const Comment = ({
   fullName,
   setFullName,
 }) => {
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleComments = showAll ? allComment : allComment.slice(0, 4);
+
   return (
     <div>
       <div className="sidebar-item comments">
         <div className="sidebar-heading">
-          <h2>4 comments</h2>
+          <h2>{allComment.length} {allComment.length === 1 ? 'comment' : 'comments'}</h2>
         </div>
         <div className="content">
           <ul>
             {allComment.length > 0 ? (
-              allComment.map((item) => {
-                const { fullName, commentText, date } = item;
+              visibleComments.map((item) => {
+                const { fullName, commentText, date, id } = item;
                 return (
-                  <li key={item.id}>
+                  <li key={id}>
                     <div className="author-thumb">
-                      <img src="public/assets/images/comment-author-03.jpg" alt="" />
+                      <FontAwesomeIcon icon={faUser} size="1x" />
                     </div>
                     <div className="right-content">
                       <h4>
-                        {fullName} 
+                        {fullName}
                         <span>{date}</span>
                       </h4>
                       <p>{commentText}</p>
@@ -40,6 +151,15 @@ const Comment = ({
               <p>No comments yet. Be the first to comment!</p>
             )}
           </ul>
+
+          {/* Show More Comments Button */}
+          {allComment.length > 4 && !showAll && (
+            <div className="show-more-wrapper">
+              <button className="show-more-btn" onClick={() => setShowAll(true)}>
+                Show More Comments
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
@@ -50,7 +170,6 @@ const Comment = ({
         <div className="content">
           <form id="comment" onSubmit={addComment}>
             <div className="row">
-              {/* Name input */}
               <div className="col-md-6 col-sm-12">
                 <fieldset>
                   <input
@@ -64,7 +183,6 @@ const Comment = ({
                   />
                 </fieldset>
               </div>
-              {/* Comment input */}
               <div className="col-lg-12">
                 <fieldset>
                   <textarea
@@ -78,14 +196,9 @@ const Comment = ({
                   />
                 </fieldset>
               </div>
-              {/* Submit button */}
               <div className="col-lg-12">
                 <fieldset>
-                  <button
-                    type="submit"
-                    id="form-submit"
-                    className="main-button"
-                  >
+                  <button type="submit" id="form-submit" className="main-button">
                     Submit
                   </button>
                 </fieldset>
@@ -99,3 +212,4 @@ const Comment = ({
 };
 
 export default Comment;
+
