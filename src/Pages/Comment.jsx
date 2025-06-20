@@ -24,7 +24,7 @@ const Comment = ({
                 return (
                   <li key={item.id}>
                     <div className="author-thumb">
-                      <img src="assets/images/comment-author-01.jpg" alt="" />
+                      <img src="public/assets/images/comment-author-03.jpg" alt="" />
                     </div>
                     <div className="right-content">
                       <h4>
