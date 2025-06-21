@@ -314,57 +314,63 @@ const PostDetails = () => {
   }, [id]);
 
   return (
-    <div className="container post-detail-container" style={{ paddingTop: "100px" }}>
-    <section className="post-detail-section">
-      <div className="post-detail-content">
-        {loading ? (
-          <Loader />
-        ) : (
-          post && (
-            <div className="post-detail-wrapper">
-              <div className="post-detail-header">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="post-detail-image"
-                />
-                <div className="post-detail-info">
-                  <span className="post-detail-category">
-                    {post.category}
-                  </span>
-                  <h2 className="post-detail-title">{post.title}</h2>
-                  <ul className="post-detail-meta">
-                    <li>Admin</li>
-                    <li>
-                      {new Date(
-                        post.createdAt.seconds * 1000
-                      ).toLocaleDateString("en-US")}
-                    </li>
-                    <li>{comments.length} Comments</li>
-                  </ul>
+    <div
+      className="container post-detail-container"
+      style={{ paddingTop: "100px" }}
+    >
+      <section className="post-detail-section">
+        <div className="post-detail-content">
+          {loading ? (
+            <Loader />
+          ) : (
+            post && (
+              <div className="post-detail-wrapper">
+                <div className="post-detail-header">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="post-detail-image"
+                  />
+                  <div className="post-detail-info">
+                    <span className="post-detail-category">
+                      {post.category}
+                    </span>
+                    <h2 className="post-detail-title">{post.title}</h2>
+                    <ul className="post-detail-meta">
+                      <li>Admin</li>
+                      <li>
+                        {new Date(
+                          post.createdAt.seconds * 1000
+                        ).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
+                        })}
+                      </li>
+                      <li>{comments.length} Comments</li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-              <div className="post-detail-body">
-                <div
-                  dangerouslySetInnerHTML={{ __html: post.content }}
-                  className="post-detail-content"
+                <div className="post-detail-body">
+                  <div
+                    dangerouslySetInnerHTML={{ __html: post.content }}
+                    className="post-detail-content"
+                  />
+                </div>
+                <Comment
+                  addComment={handleAddComment}
+                  fullName={fullName}
+                  setFullName={setFullName}
+                  commentText={commentText}
+                  setCommentText={setCommentText}
+                  allComment={comments}
                 />
               </div>
-              <Comment
-                addComment={handleAddComment}
-                fullName={fullName}
-                setFullName={setFullName}
-                commentText={commentText}
-                setCommentText={setCommentText}
-                allComment={comments}
-              />
-            </div>
-          )
-        )}
-      </div>
-    </section>
-  </div>
-  
+            )
+          )}
+        </div>
+      </section>
+    </div>
   );
 };
 

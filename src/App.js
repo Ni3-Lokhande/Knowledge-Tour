@@ -3,7 +3,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Master from "./Master";
-import Blog from "./Pages/Blog";
 import PostDetails from "./Pages/PostDetails";
 import Home from "./Pages/Home/Home";
 import AdminLogin from "./authentication/AdminLogin";
@@ -42,7 +41,6 @@ function App() {
           <Routes>
 
             <Route path="/" element={<Master Comp={Home} />} />   
-            <Route path="/blog-entries" element={<Master Comp={Blog} />} />     
             <Route path="/post-details/:id" element={<Master Comp={PostDetails} />}/>   
             <Route path="/admin-login" element={<Master Comp={AdminLogin} />} /> 
             <Route path='/dashboard' element={<ProtectedRouteForAdmin><Master Comp={DashBoard}/></ProtectedRouteForAdmin>} />    
