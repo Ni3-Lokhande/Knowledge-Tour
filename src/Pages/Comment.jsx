@@ -1,8 +1,7 @@
-
 import React, { useState } from "react";
 import "./Comment.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Comment = ({
   addComment,
@@ -20,7 +19,10 @@ const Comment = ({
     <div>
       <div className="sidebar-item comments">
         <div className="sidebar-heading">
-          <h2>{allComment.length} {allComment.length === 1 ? 'comment' : 'comments'}</h2>
+          <h2>
+            {allComment.length}{" "}
+            {allComment.length === 1 ? "comment" : "comments"}
+          </h2>
         </div>
         <div className="content">
           <ul>
@@ -35,7 +37,15 @@ const Comment = ({
                     <div className="right-content">
                       <h4>
                         {fullName}
-                        <span>{date}</span>
+                        <span>
+                          {date
+                            ? new Date(date).toLocaleDateString("en-US", {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              })
+                            : ""}
+                        </span>
                       </h4>
                       <p>{commentText}</p>
                     </div>
@@ -50,7 +60,10 @@ const Comment = ({
           {/* Show More Comments Button */}
           {allComment.length > 4 && !showAll && (
             <div className="show-more-wrapper">
-              <button className="show-more-btn" onClick={() => setShowAll(true)}>
+              <button
+                className="show-more-btn"
+                onClick={() => setShowAll(true)}
+              >
                 Show More Comments
               </button>
             </div>
@@ -93,7 +106,11 @@ const Comment = ({
               </div>
               <div className="col-lg-12">
                 <fieldset>
-                  <button type="submit" id="form-submit" className="main-button">
+                  <button
+                    type="submit"
+                    id="form-submit"
+                    className="main-button"
+                  >
                     Submit
                   </button>
                 </fieldset>
@@ -107,4 +124,3 @@ const Comment = ({
 };
 
 export default Comment;
-

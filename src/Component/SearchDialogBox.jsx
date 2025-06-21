@@ -1,15 +1,16 @@
-
-import React, { useState, useContext } from 'react';
-import './Search.css'
-import MyContext from '../context/MyContext';
+import React, { useState, useContext } from "react";
+import "./Search.css";
+import MyContext from "../context/MyContext";
 
 const SearchDialogBox = () => {
   const { getAllBlog } = useContext(MyContext); // Fetching blogs from MyContext
-  const [searchTerm, setSearchTerm] = useState(''); // State for search input
+  const [searchTerm, setSearchTerm] = useState(""); // State for search input
 
-  const filteredBlogs = getAllBlog.filter(blog =>
-    blog.title.toLowerCase().includes(searchTerm.toLowerCase())
-  ).slice(0, 8); // Limit to only 8 blogs
+  const filteredBlogs = getAllBlog
+    .filter((blog) =>
+      blog.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .slice(0, 8); // Limit to only 8 blogs
 
   return (
     <div className="col-lg-4">
@@ -50,7 +51,15 @@ const SearchDialogBox = () => {
                         />
                         <div className="recent-posts__details">
                           <h5>{blog.title}</h5>
-                          <span>{new Date(blog.createdAt.seconds * 1000).toLocaleDateString()}</span>
+                          <span>
+                            {new Date(
+                              blog.createdAt.seconds * 1000
+                            ).toLocaleDateString("en-US", {
+                              month: "short",
+                              day: "numeric",
+                              year: "numeric",
+                            })}
+                          </span>
                         </div>
                       </a>
                     </li>
