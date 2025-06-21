@@ -1,10 +1,12 @@
 import React, { useState, useContext } from "react";
 import "./Search.css";
 import MyContext from "../context/MyContext";
+import { useNavigate } from "react-router-dom";
 
 const SearchDialogBox = () => {
   const { getAllBlog } = useContext(MyContext); // Fetching blogs from MyContext
   const [searchTerm, setSearchTerm] = useState(""); // State for search input
+  const navigate = useNavigate();
 
   const filteredBlogs = getAllBlog
     .filter((blog) =>
@@ -42,26 +44,28 @@ const SearchDialogBox = () => {
               <div className="content">
                 <ul>
                   {filteredBlogs.map((blog, index) => (
-                    <li key={index}>
-                      <a href={`/post-details/${blog.id}`}>
-                        <img
-                          src={blog.image}
-                          alt={`Recent post ${index + 1}`}
-                          className="recent-posts__image"
-                        />
-                        <div className="recent-posts__details">
-                          <h5>{blog.title}</h5>
-                          <span>
-                            {new Date(
-                              blog.createdAt.seconds * 1000
-                            ).toLocaleDateString("en-US", {
-                              month: "short",
-                              day: "numeric",
-                              year: "numeric",
-                            })}
-                          </span>
-                        </div>
-                      </a>
+                    <li
+                      key={index}
+                      onClick={() => navigate(`/post-details/${blog.id}`)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <img
+                        src={blog.image}
+                        alt={`Recent post ${index + 1}`}
+                        className="recent-posts__image"
+                      />
+                      <div className="recent-posts__details">
+                        <h5>{blog.title}</h5>
+                        <span>
+                          {new Date(
+                            blog.createdAt.seconds * 1000
+                          ).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </span>
+                      </div>
                     </li>
                   ))}
                 </ul>
