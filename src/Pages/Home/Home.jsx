@@ -151,14 +151,16 @@
 
 // export default Home;
 
-import React, { useContext, useState, useEffect } from "react";
-import Slider_banner from "./Slider_banner";
+
+
+import React, { useContext, useState, useEffect, useRef } from "react";
 import MyContext from "../../context/MyContext";
 import { useNavigate } from "react-router-dom";
-import "./Home.css";
 import SearchDialogBox from "../../Component/SearchDialogBox";
 import { collection, getDocs } from "firebase/firestore";
 import { fireDb } from "../../Firebase/FirebaseConfig";
+import Slider_banner from "./Slider_banner";
+import "./Home.css";
 
 const Home = () => {
   const { getAllBlog } = useContext(MyContext);
@@ -167,8 +169,16 @@ const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [commentCounts, setCommentCounts] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-
   const blogsPerPage = 6;
+  const blogContainerRef = useRef(null); // 📍 Scroll target
+
+  const filteredBlogs = selectedCategory
+    ? getAllBlog.filter((blog) => blog.category === selectedCategory)
+    : getAllBlog;
+
+  const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
+  const startIndex = (currentPage - 1) * blogsPerPage;
+  const displayedBlogs = filteredBlogs.slice(startIndex, startIndex + blogsPerPage);
 
   // Format date
   const formatDate = (timestamp) => {
@@ -179,16 +189,6 @@ const Home = () => {
       year: "numeric",
     });
   };
-
-  // Filter and paginate blogs
-  const filteredBlogs = selectedCategory
-    ? getAllBlog.filter((blog) => blog.category === selectedCategory)
-    : getAllBlog;
-
-  const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
-  const startIndex = (currentPage - 1) * blogsPerPage;
-  const endIndex = startIndex + blogsPerPage;
-  const paginatedBlogs = filteredBlogs.slice(startIndex, endIndex);
 
   // Fetch comment counts
   const fetchCommentCounts = async (blogs) => {
@@ -203,7 +203,7 @@ const Home = () => {
 
   useEffect(() => {
     if (getAllBlog.length > 0) {
-      fetchCommentCounts(paginatedBlogs);
+      fetchCommentCounts(displayedBlogs);
     }
   }, [getAllBlog, selectedCategory, currentPage]);
 
@@ -211,14 +211,15 @@ const Home = () => {
     <div>
       <Slider_banner />
 
-      <section className="blog-posts grid-system">
+      <section className="blog-posts grid-system" ref={blogContainerRef}>
         <div className="container">
           <div className="row">
+            {/* Blog Section */}
             <div className="col-lg-8">
               <div className="all-blog-posts">
                 <div className="row">
-                  {paginatedBlogs.length > 0 ? (
-                    paginatedBlogs.map((item, index) => {
+                  {displayedBlogs.length > 0 ? (
+                    displayedBlogs.map((item, index) => {
                       const { image, createdAt, title, id, category } = item;
                       return (
                         <div className="col-lg-6" key={index}>
@@ -231,6 +232,7 @@ const Home = () => {
                                   width: "100%",
                                   height: "250px",
                                   objectFit: "cover",
+                                  cursor: "pointer",
                                 }}
                                 onClick={() => navigate(`/post-details/${id}`)}
                               />
@@ -244,19 +246,13 @@ const Home = () => {
                                 <h4>{title}</h4>
                               </a>
                               <ul className="post-info">
-                                <li>
-                                  <a href="#">Admin</a>
-                                </li>
-                                <li>
-                                  <a href="#">{formatDate(createdAt)}</a>
-                                </li>
+                                <li><a href="#">Admin</a></li>
+                                <li><a href="#">{formatDate(createdAt)}</a></li>
                                 <li>
                                   <a href="#">
-                                    {commentCounts[item.id] !== undefined
-                                      ? `${commentCounts[item.id]} Comment${
-                                          commentCounts[item.id] !== 1
-                                            ? "s"
-                                            : ""
+                                    {commentCounts[id] !== undefined
+                                      ? `${commentCounts[id]} Comment${
+                                          commentCounts[id] !== 1 ? "s" : ""
                                         }`
                                       : "Loading..."}
                                   </a>
@@ -276,9 +272,12 @@ const Home = () => {
                     <ul className="pagination-custom">
                       <li>
                         <button
-                          onClick={() =>
-                            currentPage > 1 && setCurrentPage(currentPage - 1)
-                          }
+                          onClick={() => {
+                            if (currentPage > 1) {
+                              setCurrentPage(currentPage - 1);
+                              blogContainerRef.current?.scrollIntoView({ behavior: "smooth" });
+                            }
+                          }}
                           disabled={currentPage === 1}
                         >
                           &laquo;
@@ -289,7 +288,10 @@ const Home = () => {
                         <li key={i}>
                           <button
                             className={currentPage === i + 1 ? "active" : ""}
-                            onClick={() => setCurrentPage(i + 1)}
+                            onClick={() => {
+                              setCurrentPage(i + 1);
+                              blogContainerRef.current?.scrollIntoView({ behavior: "smooth" });
+                            }}
                           >
                             {i + 1}
                           </button>
@@ -298,10 +300,12 @@ const Home = () => {
 
                       <li>
                         <button
-                          onClick={() =>
-                            currentPage < totalPages &&
-                            setCurrentPage(currentPage + 1)
-                          }
+                          onClick={() => {
+                            if (currentPage < totalPages) {
+                              setCurrentPage(currentPage + 1);
+                              blogContainerRef.current?.scrollIntoView({ behavior: "smooth" });
+                            }
+                          }}
                           disabled={currentPage === totalPages}
                         >
                           &raquo;
@@ -313,6 +317,7 @@ const Home = () => {
               </div>
             </div>
 
+            {/* Sidebar */}
             <SearchDialogBox />
           </div>
         </div>
