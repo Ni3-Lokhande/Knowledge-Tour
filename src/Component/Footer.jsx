@@ -34,7 +34,7 @@ const Footer = () => {
                             <div className="copyright-text">
                                 <p>
                                     © 2025 Knowledge Tour Co. | Design By:{" "}
-                                    <a rel="nofollow" href="https://templatemo.com" target="_parent">
+                                    <a rel="nofollow" href="https://www.linkedin.com/in/nitin-lokhande-aba80620b.." target="_parent">
                                         Nitin Lokhande
                                     </a>
                                 </p>
