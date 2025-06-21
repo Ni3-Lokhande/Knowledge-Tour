@@ -287,7 +287,7 @@ const PostDetails = () => {
         commentText,
         time: Timestamp.now(),
         date: new Date().toLocaleString("en-US", {
-          month: "long",
+          month: "short",
           day: "numeric",
           year: "numeric",
         }),

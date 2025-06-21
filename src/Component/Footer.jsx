@@ -19,7 +19,7 @@ const Footer = () => {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://www.linkedin.com/in/nitin-lokhande-aba80620b.." target="_blank" rel="noopener noreferrer">
+                                    <a href="https://www.linkedin.com/in/nitin-lokhande-aba80620b" target="_blank" rel="noopener noreferrer">
                                         LinkedIn
                                     </a>
                                 </li>
@@ -34,7 +34,7 @@ const Footer = () => {
                             <div className="copyright-text">
                                 <p>
                                     © 2025 Knowledge Tour Co. | Design By:{" "}
-                                    <a rel="nofollow" href="https://www.linkedin.com/in/nitin-lokhande-aba80620b.." target="_parent">
+                                    <a rel="nofollow" href="https://www.linkedin.com/in/nitin-lokhande-aba80620b" target="_parent">
                                         Nitin Lokhande
                                     </a>
                                 </p>
