@@ -44,10 +44,11 @@ const CreateBlog = () => {
     );
   };
 
+const createdBy = localStorage.getItem("adminName") || "Admin";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       // Create a new blog post in Firestore with the image URL
       await addDoc(collection(fireDb, "blogPost"), {
@@ -56,6 +57,7 @@ const CreateBlog = () => {
         content,
         image,  // This is now the download URL from Firebase Storage
         createdAt: Timestamp.now(),
+        createdBy , 
       });
       
       // Show success toast

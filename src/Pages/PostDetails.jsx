@@ -21,6 +21,7 @@ import toast from "react-hot-toast";
 import "./PostDetail.css";
 
 const PostDetails = () => {
+
   const { id } = useParams();
   const context = useContext(MyContext);
   const { loading, setLoading } = context;
@@ -30,6 +31,7 @@ const PostDetails = () => {
   const [fullName, setFullName] = useState("");
   const [commentText, setCommentText] = useState("");
 
+  
   // Function to fetch post details
   const getPostDetails = async () => {
     setLoading(true);
@@ -132,7 +134,7 @@ const PostDetails = () => {
                     </span>
                     <h2 className="post-detail-title">{post.title}</h2>
                     <ul className="post-detail-meta">
-                      <li>Admin</li>
+                      <li>{post.createdBy || "Admin"}</li>
                       <li>
                         {new Date(
                           post.createdAt.seconds * 1000

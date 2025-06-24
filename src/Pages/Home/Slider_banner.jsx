@@ -13,7 +13,6 @@ const Slider_banner = () => {
   const context = useContext(MyContext);
   const { getAllBlog } = context;
   const navigate = useNavigate();
-
   const [commentCounts, setCommentCounts] = useState({}); // blogID -> count
 
   // Fetch comment counts for each blog
@@ -80,7 +79,7 @@ const Slider_banner = () => {
                     </a>
                     <ul className="slider-banner__info">
                       <li className="slider-banner__info-item">
-                        <a href="#">Admin</a>
+                        <a href="#">{blog.createdBy || "Admin"}</a>
                       </li>
                       <li className="slider-banner__info-item">
                         <a href="#">
