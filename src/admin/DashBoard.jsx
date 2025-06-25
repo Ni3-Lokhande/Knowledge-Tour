@@ -14,9 +14,6 @@ const DashBoard = () => {
   const context = useContext(MyContext);
   const { getAllBlog, deleteBlogs } = context;
 
-  const adminName = localStorage.getItem("adminName") || "Admin";
-
-
   const logout = () => {
     localStorage.clear("admin");
     navigate("/");
@@ -43,7 +40,7 @@ const DashBoard = () => {
               style={{ flex: "2", textAlign: "left" }}
               className="text-center text-md-left mb-3"
             > 
-              <h5>{adminName}</h5>
+              <h5>Nitin Lokhande</h5>
               <p>Administrator</p>
               <p>nitinlokhande1995@gmail.com</p>
               <p>Total Blogs: {getAllBlog.length}</p>

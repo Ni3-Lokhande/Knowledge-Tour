@@ -134,7 +134,7 @@ const PostDetails = () => {
                     </span>
                     <h2 className="post-detail-title">{post.title}</h2>
                     <ul className="post-detail-meta">
-                      <li>{post.createdBy || "Admin"}</li>
+                      <li>Admin</li>
                       <li>
                         {new Date(
                           post.createdAt.seconds * 1000

@@ -79,7 +79,7 @@ const Slider_banner = () => {
                     </a>
                     <ul className="slider-banner__info">
                       <li className="slider-banner__info-item">
-                        <a href="#">{blog.createdBy || "Admin"}</a>
+                        <a href="#">Admin</a>  
                       </li>
                       <li className="slider-banner__info-item">
                         <a href="#">

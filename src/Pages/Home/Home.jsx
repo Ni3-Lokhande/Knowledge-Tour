@@ -94,7 +94,7 @@ const Home = () => {
                                 <h4>{title}</h4>
                               </a>
                               <ul className="post-info">
-                                <li><a href="#">{createdBy || "Admin"}</a></li>
+                                <li><a href="#">Admin</a></li>
                                 <li><a href="#">{formatDate(createdAt)}</a></li>
                                 <li>
                                   <a href="#">
