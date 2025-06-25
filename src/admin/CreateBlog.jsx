@@ -44,7 +44,7 @@ const CreateBlog = () => {
     );
   };
 
-const createdBy = localStorage.getItem("adminName") || "Admin";
+const adminName = localStorage.getItem("adminName") || "Admin";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,7 +57,7 @@ const createdBy = localStorage.getItem("adminName") || "Admin";
         content,
         image,  // This is now the download URL from Firebase Storage
         createdAt: Timestamp.now(),
-        createdBy , 
+        createdBy:  adminName, // ✅ associate blog with admin name 
       });
       
       // Show success toast

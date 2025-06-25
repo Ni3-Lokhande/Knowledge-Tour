@@ -14,8 +14,7 @@ const DashBoard = () => {
   const context = useContext(MyContext);
   const { getAllBlog, deleteBlogs } = context;
 
-   const adminData = JSON.parse(localStorage.getItem("admin"));
-   const adminName = adminData?.name || "Admin";
+  const adminName = localStorage.getItem("adminName") || "Admin";
 
 
   const logout = () => {
